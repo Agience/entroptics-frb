@@ -1,6 +1,6 @@
 cff-version: 1.2.0
 message: "If you use this work, please cite the paper and the CHIME/FRB Catalog 1 release."
-title: "entroptics-frb"
+title: "An untuned rank-selection and reconstruction procedure recovers CHIME/FRB burst morphology"
 abstract: "An untuned rank-selection and reconstruction procedure applied to public CHIME/FRB Catalog 1 waterfalls, compared against the fitburst forward model."
 type: software
 authors:
@@ -13,6 +13,14 @@ repository-code: "https://github.com/Agience/entroptics-frb"
 license: Apache-2.0
 version: 0.1.0
 date-released: "2026-11-08"
+doi: "10.5281/zenodo.24068209"
+identifiers:
+  - type: doi
+    value: "10.5281/zenodo.24068209"
+    description: "Concept DOI (all versions)"
+  - type: doi
+    value: "10.5281/zenodo.24068210"
+    description: "Version DOI - v0.1.0"
 keywords:
   - fast radio bursts
   - CHIME/FRB
