@@ -42,7 +42,7 @@ Write $W\in\mathbb{R}^{T\times F}$ for the dedispersed waterfall with $T$ time s
 
 **Observer facts.** Dead channels are *dropped*, never zero-filled. A channel that was measured and read zero is an observation of no power; a channel that was never measured is absent, and absence is not an observation of zero — substituting zero widens the axis the signal is scored against by exactly the channels carrying nothing. "Dead" is the catalogue's own mask together with a zero-variance test. This is the only step that uses knowledge of the instrument, and it supplies no burst information.
 
-**Whiten.** Each surviving channel is centred on its mean and scaled by its root-mean-square deviation about it, so every whitened channel carries the same energy and the screen's Gram is a sample correlation matrix. A channel whose values are all equal has no scale and leaves the screen; no number separates it from one that moved. The step equalises per-channel scale and performs **no decorrelation** — it is a per-channel divide, not $\Sigma^{-1/2}$ — so noise correlated *across* channels survives it intact.
+**Whiten.** Each surviving channel is centred on its mean and scaled by its root-mean-square deviation about it, so every whitened channel carries the same energy and the screen's Gram is a sample correlation matrix. A channel whose values are all equal has no scale and leaves the screen; no number separates it from one that moved. The step equalises per-channel scale and performs no decorrelation — it is a per-channel divide, not $\Sigma^{-1/2}$ — so noise correlated *across* channels survives it intact.
 
 **Fold.** The frequency axis is coarsened to the resolution the record's own power marginal says it carries, $F_{\mathrm{eff}}=\operatorname{round}(F/\delta_F)$ with $\delta_F=F_{\mathrm{eff}\text{-}\mathrm{measured}}/2^{\mathrm H_F}$ read from the Shannon entropy of the frequency power marginal. The fold is licensed only where two conditions both hold: that the concentration is real against an exact Dirichlet null, and that the frequency axis is *continuous* — that neighbouring channels are more alike than a random relabelling, tested against the closed-form permutation null. The time axis keeps native spacing, which the ordered reads require. For these frames the fold takes $9{,}760$–$11{,}696$ live channels to $5{,}949$–$10{,}972$.
 
@@ -89,7 +89,7 @@ Each event resolves at least one mode above the floor. The reported per-mode qua
 
 The record shapes are extreme — $T=19$–$38$ against $16{,}384$ recorded channels — so the aspect ratio each read was taken at is on the page beside it.
 
-**The modes are read at the fold's width** (the "read at" column), and every recorded channel is then projected onto them, so the read is at the recorded frequency resolution.
+The modes are read at the fold's width (the "read at" column), and every recorded channel is then projected onto them, so the read is at the recorded frequency resolution.
 
 ### 3.2 A random spot-check
 
@@ -103,7 +103,7 @@ This establishes that the untuned instrument runs on records it was not selected
 
 *fitburst* is fitted with the shape of a burst already in it and solves for that shape's parameters. The read is given no model of a burst at all and keeps whatever modes clear the floor. The two share no assumptions, so agreement between them on the same waterfall is evidence that the read is finding the burst rather than an artifact of its own construction.
 
-Every quantity is scored on the same cells (the live channels — the read is undefined on dead ones, and scoring each series wherever it happens to be finite scores them on different pixels) and with its **per-channel baseline removed**. The baseline removal is what makes the series comparable, and it is applied to all of them: `model_wfall` carries no per-channel standing level at all — its per-channel median is numerically zero, at most $3.9\times10^{-6}$ across the four events against model maxima of $0.108$–$0.506$ — because it is a statement about the burst and not about each channel's baseline. A series carrying a baseline would therefore be scored against one that does not, and the baseline would count as disagreement. Centring one series and not the others would hand that one a comparison the references never got.
+Every quantity is scored on the same cells (the live channels — the read is undefined on dead ones, and scoring each series wherever it happens to be finite scores them on different pixels) and with its per-channel baseline removed. The baseline removal is what makes the series comparable, and it is applied to all of them: `model_wfall` carries no per-channel standing level at all — its per-channel median is numerically zero, at most $3.9\times10^{-6}$ across the four events against model maxima of $0.108$–$0.506$ — because it is a statement about the burst and not about each channel's baseline. A series carrying a baseline would therefore be scored against one that does not, and the baseline would count as disagreement. Centring one series and not the others would hand that one a comparison the references never got.
 
 | series | range | mean |
 |---|---|---|
@@ -113,7 +113,7 @@ Every quantity is scored on the same cells (the live channels — the read is un
 
 *Table 2. Correlation against the fitburst forward model, from `tables/agreement.csv`.*
 
-The model is smooth along frequency, so the box-average control rebins the raw waterfall to the width the modes are read at — smoothing alone, with no read. It reads $0.214$. **Smoothing accounts for $6.1\%$ of the gain and the read for the rest.** The read itself is not smoothed: it is at the recorded channel resolution, and keeps structure along frequency that the smooth model does not carry.
+The model is smooth along frequency, so the box-average control rebins the raw waterfall to the width the modes are read at — smoothing alone, with no read. It reads $0.214$. Smoothing accounts for $6.1\%$ of the gain and the read for the rest. The read itself is not smoothed: it is at the recorded channel resolution, and keeps structure along frequency that the smooth model does not carry.
 
 ---
 
@@ -140,7 +140,7 @@ Two things follow, and they are the point of the section.
 
 **Resolution is not what caps the read.** A perfect recovery at the modes' folded width scores $0.994$. The fold costs at most $1.5\%$ of the attainable correlation on the worst of the four events and $0.1\%$ on the best. So the gap between $0.470$ and $1$ is not the resolution the instrument chose.
 
-**What we cannot bound.** The remaining gap is attributable to the forward model's own form. *fitburst* is smooth and has no per-channel freedom, while both the waterfall and the read carry per-channel structure that no smooth parametric surface can represent. Quantifying that would require refitting *fitburst* — perturbing its parameters, or refitting it to a resampled record — and we do not have its fitting code. **We therefore do not report a ceiling that accounts for the model's form, and the residual gap between $0.470$ and $0.994$ should not be read as error in the read.** It is a mixture of the read's own residual and a representational limit of the reference, in unknown proportion.
+**What we cannot bound.** The remaining gap is attributable to the forward model's own form. *fitburst* is smooth and has no per-channel freedom, while both the waterfall and the read carry per-channel structure that no smooth parametric surface can represent. Quantifying that would require refitting *fitburst* — perturbing its parameters, or refitting it to a resampled record — and we do not have its fitting code. We therefore do not report a ceiling that accounts for the model's form, and the residual gap between $0.470$ and $0.994$ should not be read as error in the read. It is a mixture of the read's own residual and a representational limit of the reference, in unknown proportion.
 
 One consequence of scoring on the full frame is worth naming. Off the burst, both the read and the model are close to zero, and that agreement counts toward the score. Restricted to the on-burst window alone, the raw waterfall reads $0.297$ and the read $0.394$ (means; per-event values in `tables/agreement.csv`). The read's margin over the raw survives the restriction — the read is $2.4\times$ the raw on the full frame and $1.3\times$ on the on-burst window — but the absolute figures are lower, and a reader comparing against a full-frame number elsewhere should use the same convention.
 

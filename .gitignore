@@ -3,3 +3,14 @@ __pycache__/
 *.pyc
 .venv/
 *.egg-info/
+
+# TeX intermediates of typeset/build_paper.py (PAPER.tex and PAPER.pdf are tracked)
+/*.aux
+/*.log
+/*.out
+/*.toc
+/*.xdv
+/*.fls
+/*.fdb_latexmk
+/*.synctex.gz
+/typeset/__pycache__/

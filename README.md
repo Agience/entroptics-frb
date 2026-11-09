@@ -4,6 +4,8 @@ An untuned rank-selection and reconstruction procedure, applied to the public CH
 waterfalls and compared against CHIME's own *fitburst* forward model. No constant is fitted to the
 data, no burst template enters, and nothing is set per event.
 
+Paper: [PAPER.pdf](PAPER.pdf) (two-column; source in [PAPER.tex](PAPER.tex), built from [PAPER.md](PAPER.md) by `typeset/build_paper.py`).
+
 This repository holds the paper and everything needed to regenerate every number in it. The
 procedure is the [`entroptics`](https://github.com/Agience/entroptics) library's public interface,
 installed from PyPI; nothing here reimplements it.
